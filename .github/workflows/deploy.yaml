@@ -6,11 +6,12 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        php-version: '8.2'
         steps:
             - uses: actions/checkout@v3
             - name: Install Composer Dependencies
               working-directory: ./app
+              with:
+                  php-version: '8.2'
               run: composer install --prefer-dist
             - name: Run Tests
               working-directory: ./app
