@@ -11,6 +11,14 @@ services:
         build:
           dockerfile: ./php/Dockerfile
           target: app
+        environment:
+            MYSQL_HOST: db
+            MYSQL_PORT: ${MYSQL_PORT}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            REDIS_HOST: cache
+            REDIS_PORT: ${REDIS_PORT}
   
     db:
         image: mysql:8.0
@@ -22,6 +30,9 @@ services:
             MYSQL_USER: user
             MYSQL_PASSWORD: pass
             MYSQL_DATABASE: docker-php
+            
+    cache:
+        image: redis:latest
         
 volumes:
     mysqldata:
